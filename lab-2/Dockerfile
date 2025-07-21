@@ -47,19 +47,16 @@ RUN apt-get update && apt-get install -y \
 COPY antlr-4.13.1-complete.jar /usr/local/lib/antlr-4.13.1-complete.jar
 
 COPY ./commands/antlr /usr/local/bin/antlr
-RUN chmod +x /usr/local/bin/antlr
+RUN chmod 755 /usr/local/bin/antlr
 COPY ./commands/antlr /usr/bin/antlr
-RUN chmod +x /usr/bin/antlr
+RUN chmod 755 /usr/bin/antlr
 
 COPY ./commands/grun /usr/local/bin/grun
-RUN chmod +x /usr/local/bin/grun
+RUN chmod 755 /usr/local/bin/grun
 COPY ./commands/grun /usr/bin/grun
-RUN chmod +x /usr/bin/grun
+RUN chmod 755 /usr/bin/grun
 
 # Python virtual env
-COPY python-venv.sh .
-RUN chmod +x ./python-venv.sh
-RUN ./python-venv.sh
 
 COPY requirements.txt .
 # Not production-intended, never do this, this is just a simple example
