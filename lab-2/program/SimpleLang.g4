@@ -4,8 +4,9 @@ prog: stat+ ;
 
 stat: expr NEWLINE ;
 
-expr: expr op=('*'|'/') expr       # MulDiv
+expr: expr op=('*'|'/'|MOD) expr       # MulDiv
     | expr op=('+'|'-') expr       # AddSub
+    | expr op=('==' | NEQ) expr    # EqNeq 
     | INT                          # Int
     | FLOAT                        # Float
     | STRING                       # String
@@ -13,6 +14,8 @@ expr: expr op=('*'|'/') expr       # MulDiv
     | '(' expr ')'                 # Parens
     ;
 
+MOD : '%' ;
+NEQ : '!=' ;
 INT: [0-9]+ ;
 FLOAT: [0-9]+'.'[0-9]* ;
 STRING: '"' .*? '"' ;
